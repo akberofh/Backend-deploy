@@ -13,7 +13,7 @@ const server = http.createServer(app);
 
 app.use(express.json());
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: 'https://backend-deploy-chi.vercel.app/:5000',
     credentials: true,
 }));
 app.use(express.urlencoded({ extended: true }));
@@ -26,11 +26,7 @@ connectDB();
 app.use('/api/users', userRoutes);
 app.use('/api/notes', noteRoutes);
 
-app.get("/", (req, res) => {
-    res.json({
-      message: "Welcome",
-    });
-  });
+
 
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
