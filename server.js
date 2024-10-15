@@ -26,6 +26,11 @@ connectDB();
 app.use('/api/users', userRoutes);
 app.use('/api/notes', noteRoutes);
 
+app.get("/", (req, res) => {
+    res.json({
+      message: "Welcome",
+    });
+  });
 
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
