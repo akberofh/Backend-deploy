@@ -25,24 +25,24 @@ const authUser = async (req, res) => {
 
 const deleteByIdUser = async (req, res) => {
     const { id } = req.params;
-  
+
     try {
-      const allUsers = await User.findOneAndDelete({ _id: id });
-      if (!allUsers) {
-        return res.status(404).json({ error: "Note not found" });
-      }
-      res.json({ allUsers });
+        const allUsers = await User.findOneAndDelete({ _id: id });
+        if (!allUsers) {
+            return res.status(404).json({ error: "Note not found" });
+        }
+        res.json({ allUsers });
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: "Internal Server Error" });
+        console.error(error);
+        res.status(500).json({ error: "Internal Server Error" });
     }
-  };
+};
 
 const registerUser = async (req, res) => {
     try {
-        const { name, email, password ,userType } = req.body;
+        const { name, email, password, userType } = req.body;
         let photo = '';
-        
+
         if (req.file) {
             photo = req.file.buffer.toString('base64');
         }
@@ -148,12 +148,41 @@ const updateUserProfile = async (req, res) => {
     }
 };
 
+const loginUser = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        const user = await User.findOne({ email });
+
+        if (user && (await user.checkPassword(password))) {
+            generateToken(res, user._id); // Token'ı çerezlere ekle
+
+            res.status(200).json({
+                success: true, // Başarı durumu eklendi
+                _id: user._id,
+                name: user.name,
+                email: user.email,
+                photo: user.photo,
+                userType: user.userType,
+            });
+        } else {
+            res.status(401).json({ success: false, message: 'Email veya parola hatalı' });
+        }
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+};
+
+
 export {
     authUser,
     registerUser,
+    loginUser, 
     logoutUser,
     getUserProfile,
     updateUserProfile,
     getUser,
     deleteByIdUser,
 };
+
+
+
