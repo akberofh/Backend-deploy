@@ -23,7 +23,7 @@ app.use(cookieParser());
 
 connectDB();
 
-app.set("view engine", "ejs")
+app.set("view engine", "ejs");
 
 app.get("/login", (req, res) => {
     res.render("login")
