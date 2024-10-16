@@ -23,14 +23,23 @@ app.use(cookieParser());
 
 connectDB();
 
+app.set("view engine", "ejs")
+
+app.get("/login", (req, res) => {
+    res.render("login")
+});
+app.get("/panel", (req, res) => {
+    res.render("panel")
+});
+
 app.use('/api/users', userRoutes);
 app.use('/api/notes', noteRoutes);
 
 app.get("/", (req, res) => {
     res.json({
-      message: "Welcome",
+        message: "Welcome",
     });
-  });
+});
 
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
