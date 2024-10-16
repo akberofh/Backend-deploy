@@ -26,10 +26,10 @@ connectDB();
 app.set("view engine", "ejs");
 
 app.get("/login", (req, res) => {
-    res.render("login")
+    res.render("login.ejs")
 });
 app.get("/panel", (req, res) => {
-    res.render("panel")
+    res.render("panel.ejs")
 });
 
 app.use('/api/users', userRoutes);

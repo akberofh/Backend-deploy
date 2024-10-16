@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login</title>
 </head>
 <body>
-
-    <h1>PANEL</h1>
-    
+    <h1>Giriş Yap</h1>
+    <form action="/api/users/login" method="POST">
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Parola" required>
+        <button type="submit">Giriş Yap</button>
+    </form>
 </body>
 </html>
