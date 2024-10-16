@@ -1,4 +1,4 @@
-import NoteModel from "../Models/noteModel.js";
+import NoteModel from "../models/noteModel.js";
 
 const notePost = async (req, res) => {
   const { title, description, thumbnail, price,distance ,catagory} = req.body;
