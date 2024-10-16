@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
 app.use(cors({
-    origin: `https://backend-deploy-chi.vercel.app/:${PORT}`,
+    origin: "http://localhost:3000",
     credentials: true,
 }));
 app.use(express.urlencoded({ extended: true }));
