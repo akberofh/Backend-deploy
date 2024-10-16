@@ -23,14 +23,18 @@ app.use(cookieParser());
 
 connectDB();
 
-app.set("view engine", "ejs");
+// app.set("view engine", "ejs");
 
-app.get("/login", (req, res) => {
-    res.render("login.ejs")
+app.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views/login.html'));
 });
-app.get("/panel", (req, res) => {
-    res.render("panel.ejs")
+app.get('/panel', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views/panel.ejs'));
 });
+
+// app.get("/panel", (req, res) => {
+//     res.render("panel.ejs")
+// });
 
 app.use('/api/users', userRoutes);
 app.use('/api/notes', noteRoutes);
